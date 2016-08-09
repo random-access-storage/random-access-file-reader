@@ -1,0 +1,30 @@
+{
+  "name": "random-access-file-reader",
+  "version": "0.0.0",
+  "description": "An abstract-random-access compliant module for reading files in the browser using the FileReader API and browserify.",
+  "main": "index.js",
+  "dependencies": {
+    "abstract-random-access": "^1.1.0",
+    "inherits": "^2.0.1",
+    "unordered-set": "^2.0.0"
+  },
+  "devDependencies": {
+    "drag-and-drop-files": "0.0.1",
+    "standard": "^7.1.2",
+    "wzrd": "^1.4.0"
+  },
+  "scripts": {
+    "test": "standard",
+    "example": "wzrd example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mafintosh/random-access-file-reader.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mafintosh/random-access-file-reader/issues"
+  },
+  "homepage": "https://github.com/mafintosh/random-access-file-reader"
+}
