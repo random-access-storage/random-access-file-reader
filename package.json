@@ -1,6 +1,6 @@
 {
   "name": "random-access-file-reader",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An abstract-random-access compliant module for reading files in the browser using the FileReader API and browserify.",
   "main": "index.js",
   "dependencies": {
