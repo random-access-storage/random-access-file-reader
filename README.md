@@ -2,6 +2,8 @@
 
 An [abstract-random-access](https://github.com/juliangruber/abstract-random-access) compliant module for reading files in the browser using the [FileReader API](https://developer.mozilla.org/en/docs/Web/API/FileReader) and browserify.
 
+[![build status](http://img.shields.io/travis/mafintosh/random-access-file-reader.svg?style=flat)](http://travis-ci.org/mafintosh/random-access-file-reader)
+
 ```
 npm install random-access-file-reader
 ```
