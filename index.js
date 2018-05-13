@@ -1,4 +1,4 @@
-var AbstractRandomAccess = require('abstract-random-access')
+var RandomAccess = require('random-access-storage')
 var unordered = require('unordered-set')
 var inherits = require('inherits')
 
@@ -6,16 +6,15 @@ module.exports = RAF
 
 function RAF (file) {
   if (!(this instanceof RAF)) return new RAF(file)
-  AbstractRandomAccess.call(this)
+  RandomAccess.call(this)
 
-  this.length = file.size
   this.file = file
 
   this._free = []
   this._used = []
 }
 
-inherits(RAF, AbstractRandomAccess)
+inherits(RAF, RandomAccess)
 
 RAF.prototype._alloc = function () {
   var self = this
@@ -38,18 +37,27 @@ RAF.prototype._next = function () {
   return free
 }
 
-RAF.prototype._write = function (offset, buffer, cb) {
-  cb(new Error('Readonly'))
+RAF.prototype._stat = function (req) {
+  req.callback(null, {
+    size: this.file.size,
+    mtime: this.file.lastModifiedDate,
+    type: this.file.type
+  })
 }
 
-RAF.prototype._read = function (offset, length, cb) {
-  this._next().read(offset, length, cb)
+RAF.prototype._write = function (req) {
+  req.callback(new Error('Readonly'))
 }
 
-RAF.prototype._close = function (cb) {
+RAF.prototype._read = function (req) {
+  this._next().read(req)
+}
+
+RAF.prototype._close = function (req) {
   for (var i = 0; i < this._used.length; i++) {
     this._used[i].destroy()
   }
+  req.callback()
 }
 
 function Reader (file) {
@@ -59,7 +67,7 @@ function Reader (file) {
   this.file = file
 
   this._index = 0
-  this._callback = null
+  this._req = null
   this._reader = new window.FileReader()
   this._reader.onload = onload
   this._reader.onerror = onerror
@@ -69,21 +77,21 @@ function Reader (file) {
   }
 
   function onload (e) {
-    call(null, Buffer(e.target.result))
+    call(null, Buffer.from(e.target.result))
   }
 
   function call (err, val) {
-    var cb = self._callback
-    if (!cb) return
-    self._callback = null
+    var req = self._req
+    if (!req) return
+    self._req = null
     self.onfree()
-    cb(err, val)
+    req.callback(err, val)
   }
 }
 
-Reader.prototype.read = function (offset, length, cb) {
-  var slice = this.file.slice(offset, offset + length)
-  this._callback = cb
+Reader.prototype.read = function (req) {
+  var slice = this.file.slice(req.offset, req.offset + req.size)
+  this._req = req
   this._reader.readAsArrayBuffer(slice)
 }
 

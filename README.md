@@ -1,6 +1,6 @@
 # random-access-file-reader
 
-An [abstract-random-access](https://github.com/juliangruber/abstract-random-access) compliant module for reading files in the browser using the [FileReader API](https://developer.mozilla.org/en/docs/Web/API/FileReader) and browserify.
+A [random-access-storage](https://github.com/random-access-storage/random-access-storage) compliant module for reading files in the browser using the [FileReader API](https://developer.mozilla.org/en/docs/Web/API/FileReader) and browserify.
 
 [![build status](http://img.shields.io/travis/mafintosh/random-access-file-reader.svg?style=flat)](http://travis-ci.org/mafintosh/random-access-file-reader)
 
@@ -48,11 +48,7 @@ drop(document.body, function (files) {
 
 #### `var file = raf(browserFile)`
 
-Create a new instance. Accepts a browser file object. The file object has an [abstract-random-access](https://github.com/juliangruber/abstract-random-access) compliant API interface. Note that it is readonly so writes will fail.
-
-#### `file.length`
-
-Contains the byte length of the file.
+Create a new instance. Accepts a browser file object. The file object has an [random-access-storage](https://github.com/random-access-storage/random-access-storage) compliant API interface. Note that it is readonly so writes will fail.
 
 ## License
 

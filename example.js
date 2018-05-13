@@ -7,19 +7,23 @@ drop(document.body, function (files) {
   var file = raf(files[0])
   var offset = 0
 
-  loop()
+  file.stat(function (err, st) {
+    if (err) throw err
+    console.log('stat:', st)
+    loop()
 
-  function loop () {
-    if (offset === file.length) {
-      console.log('(done)')
-      return
+    function loop () {
+      if (offset === st.size) {
+        console.log('(done)')
+        return
+      }
+
+      file.read(offset, Math.min(st.size - offset, 16 * 1024), function (err, buf) {
+        if (err) throw err
+        offset += buf.length
+        console.log('read:', buf)
+        loop()
+      })
     }
-
-    file.read(offset, Math.min(file.length - offset, 16 * 1024), function (err, buf) {
-      if (err) throw err
-      offset += buf.length
-      console.log('read:', buf)
-      loop()
-    })
-  }
+  })
 })

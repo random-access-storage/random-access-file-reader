@@ -4,8 +4,8 @@
   "description": "An abstract-random-access compliant module for reading files in the browser using the FileReader API and browserify.",
   "main": "index.js",
   "dependencies": {
-    "abstract-random-access": "^1.1.0",
     "inherits": "^2.0.1",
+    "random-access-storage": "^1.2.0",
     "unordered-set": "^2.0.0"
   },
   "devDependencies": {
