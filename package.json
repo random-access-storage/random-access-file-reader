@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mafintosh/random-access-file-reader.git"
+    "url": "https://github.com/random-access-storage/random-access-file-reader.git"
   },
   "author": "Mathias Buus (@mafintosh)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mafintosh/random-access-file-reader/issues"
+    "url": "https://github.com/random-access-storage/random-access-file-reader/issues"
   },
-  "homepage": "https://github.com/mafintosh/random-access-file-reader"
+  "homepage": "https://github.com/random-access-storage/random-access-file-reader"
 }
