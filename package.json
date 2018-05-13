@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "drag-and-drop-files": "0.0.1",
-    "standard": "^7.1.2",
+    "standard": "^11.0.1",
     "wzrd": "^1.4.0"
   },
   "scripts": {
